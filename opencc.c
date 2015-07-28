@@ -76,7 +76,7 @@ PHP_FUNCTION(opencc_close)
 	if (zend_parse_parameters(argc TSRMLS_CC, "r", &zod) == FAILURE)
 		return;
 
-	opencc_t od = zod->value.lval;
+	opencc_t od = (opencc_t) zod->value.lval;
 
 	int res = opencc_close(od);
 
@@ -96,7 +96,7 @@ PHP_FUNCTION(opencc_close)
     */
 PHP_FUNCTION(opencc_error)
 {
-	char * msg = NULL;
+	const char * msg = NULL;
 	int len;
 
 	if (zend_parse_parameters_none() == FAILURE) {
