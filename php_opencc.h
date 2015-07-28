@@ -66,6 +66,10 @@ ZEND_END_MODULE_GLOBALS(opencc)
 #define OPENCC_G(v) (opencc_globals.v)
 #endif
 
+#ifndef PHP_FE_END
+#define PHP_FE_END {NULL, NULL, NULL}
+#endif
+
 #endif	/* PHP_OPENCC_H */
 
 
