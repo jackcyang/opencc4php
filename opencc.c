@@ -99,9 +99,19 @@ PHP_FUNCTION(opencc_error)
 	const char * msg = NULL;
 	int len;
 
+// Add support for old php 5.2
+#ifdef zend_parse_parameters_none 
+	// php 5.3
 	if (zend_parse_parameters_none() == FAILURE) {
 		return;
 	}
+#else
+	// php 5.2
+	if (ZEND_NUM_ARGS() != 0) {
+		WRONG_PARAM_COUNT;
+	}
+#endif
+
 	msg = opencc_error();
 	len = strlen(msg);
 	RETURN_STRINGL(msg, len, 0);
